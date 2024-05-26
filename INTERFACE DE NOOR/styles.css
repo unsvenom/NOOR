@@ -1,0 +1,61 @@
+/* styles.css */
+body {
+    scroll-behavior: smooth;
+}
+
+.navbar-transparent {
+    background: rgba(255, 255, 255, 0.6);
+    transition: background 0.3s ease-in-out;
+}
+
+.navbar-solid {
+    background: rgba(255, 255, 255, 1);
+    transition: background 0.3s ease-in-out;
+}
+
+.active-link::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #EFBC9B;
+    margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.9);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        display: none;
+    }
+    nav ul.show {
+        display: flex;
+    }
+}
+
+/* Section background colors */
+#whats-noor {
+    background-color: #FBF3D5;
+}
+
+#whos-us {
+    background-color: #D6DAC8;
+}
+
+footer {
+    background-color: #9CAFAA;
+}
+
+/* Button styles */
+button, .cursor-pointer {
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+button:hover, .cursor-pointer:hover {
+    background-color: #EFBC9B;
+    border-color: #EFBC9B;
+}
