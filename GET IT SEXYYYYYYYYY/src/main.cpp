@@ -10,8 +10,8 @@
 #define WIFI_PASSWORD ""
 
 // FIREBASE :
-#define API_KEY "AIzaSyAAYqQGyH4EmPTP1LHxen3j_CA1kl_b0po"
-#define DATABASE_URL "https://noorupthedoor-default-rtdb.europe-west1.firebasedatabase.app/"
+#define API_KEY ""  // api key
+#define DATABASE_URL ""  //database url
 
 FirebaseData fbdo;
 FirebaseAuth auth;
