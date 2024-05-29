@@ -6,7 +6,7 @@
 #include "addons/RTDBHelper.h"
 
 // WIFI :
-#define WIFI_SSID "Wokwi-GUEST"
+#define WIFI_SSID "" //WIFI NAME , Wokwi-GUEST in case u use wokwi for simulation
 #define WIFI_PASSWORD ""
 
 // FIREBASE :
