@@ -1,15 +1,20 @@
+// to work with arduino
 #include <Arduino.h>
 #include <WiFi.h>
-#include <Firebase_ESP_Client.h>
+// platformio library (servos)
 #include <ESP32Servo.h>
+// firebase connection platformio library
+#include <Firebase_ESP_Client.h>
 #include "addons/TokenHelper.h"
 #include "addons/RTDBHelper.h"
 
 // WIFI :
+
 #define WIFI_SSID "" //WIFI NAME , Wokwi-GUEST in case u use wokwi for simulation
 #define WIFI_PASSWORD ""
 
 // FIREBASE :
+
 #define API_KEY ""  // api key
 #define DATABASE_URL ""  //database url
 
@@ -19,7 +24,9 @@ FirebaseConfig config;
 
 unsigned long sendDataPrevMillis = 0;
 bool signupOK = false;
+
 // les servos :
+
 const int servoPins[6] = {2, 4, 5, 18, 19, 21};
 Servo servos[6];
 
@@ -27,9 +34,12 @@ struct BraillePattern {
     int pattern[6];
 };
 
-// braille mapping : letter[i] >> switch(letter[i])
+// braille mapping : 
+
 BraillePattern arabic_to_braille(int letter) {
+
     switch (letter) {
+
         case 0x0621: return {{0,0,0,1,0,0}}; // ء
         case 0x0622: return {{0,1,1,1,0,0}}; // آ
         case 0x0623: return {{0,0,1,1,0,0}}; // أ
