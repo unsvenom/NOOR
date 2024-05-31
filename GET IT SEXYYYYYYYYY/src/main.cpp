@@ -80,10 +80,16 @@ BraillePattern arabic_to_braille(int letter) {
     }
 }
 
+// hna khedma ta3 sah 
+
 void translateAndMoveServos(String text) {
+
     for (int i = 0; i < text.length();) {
-        uint16_t letter;
+
+        uint16_t letter; // ascii shit
+
         // Decode UTF-8 to get the Unicode code point
+
         if ((text[i] & 0xF0) == 0xE0) {
             // 3-byte character (shouldn't be necessary for Arabic, but just in case)
             letter = ((text[i] & 0x0F) << 12) | ((text[i + 1] & 0x3F) << 6) | (text[i + 2] & 0x3F);
@@ -98,12 +104,12 @@ void translateAndMoveServos(String text) {
             i++;
         }
 
-        Serial.print("Translating letter: ");
-        Serial.println(letter, HEX);
+        Serial.print("Translating letter: "); // hna bash n3rfo wsh mn letter rana fih
+        Serial.println(letter, HEX); // the letter
 
-        BraillePattern braille = arabic_to_braille(letter);
+        BraillePattern braille = arabic_to_braille(letter); // w code ta3o f braille hka l9ina first issue
 
-        Serial.print("Braille pattern: ");
+        Serial.print("Braille pattern: "); // same
         for (int j = 0; j < 6; j++) {
             Serial.print(braille.pattern[j]);
             Serial.print(" ");
@@ -111,6 +117,7 @@ void translateAndMoveServos(String text) {
         Serial.println();
 
         // Move servos based on Braille pattern
+
         for (int j = 0; j < 6; j++) {
             if (braille.pattern[j]) {
                 servos[j].write(90); 
@@ -118,10 +125,11 @@ void translateAndMoveServos(String text) {
                 servos[j].write(0);
             }
         }
-        delay(1000); // Wait between letters
+        delay(1000); // Wait 1 second between letters
     }
 
     // Reset servos
+
     for (int i = 0; i < 6; i++) {
         servos[i].write(0);
     }
@@ -129,17 +137,18 @@ void translateAndMoveServos(String text) {
 
 
 void setup() {
-    Serial.begin(115200);
+
+    Serial.begin(115200); // serial monitor ta3 esp32 ykun 115200
     Serial.println("Initializing...");
 
     WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-    Serial.print("Connecting to Wi-Fi");
+    Serial.print("Connecting to Wi-Fi"); 
     while (WiFi.status() != WL_CONNECTED) {
         Serial.print(".");
         delay(300);
     }
     Serial.println();
-    Serial.print("Connected with IP: ");
+    Serial.print("Connected with IP: "); // officially connected to wifi
     Serial.println(WiFi.localIP());
     Serial.println();
 
@@ -161,10 +170,12 @@ void setup() {
         servos[i].attach(servoPins[i]);
     }
 
-    Serial.println("Setup completed.");
+    Serial.println("Setup completed."); // servos & firebase are connected
 }
 
 void loop() {
+//hna lkhdematon 
+
     if (Firebase.RTDB.getString(&fbdo, "/text")) {
         if (fbdo.dataType() == "string") {
             String payload = fbdo.stringData();
